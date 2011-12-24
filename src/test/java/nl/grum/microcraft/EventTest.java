@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
+import nl.grum.microcraft.support.TestEvent;
+
 import org.junit.Before;
 import org.junit.Test;
 
