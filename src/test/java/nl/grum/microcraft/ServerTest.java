@@ -24,7 +24,7 @@ public class ServerTest {
 
     @Test
     public void addEventToQueue() {
-        Event e = new Event();
+        Event<?> e = new TestEvent("foo");
 
         subject.queueEvent(e);
         assertTrue(subject.peekEvent());
@@ -32,10 +32,10 @@ public class ServerTest {
 
     @Test
     public void removeEventFromQueue() {
-        Event e1 = new Event();
+        Event<?> e1 = new TestEvent("foo");
         subject.queueEvent(e1);
 
-        Event e2 = subject.pollEvent();
+        Event<?> e2 = subject.pollEvent();
         assertFalse(subject.peekEvent());
         assertEquals(e1, e2);
     }
