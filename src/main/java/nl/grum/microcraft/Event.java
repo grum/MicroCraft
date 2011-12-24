@@ -1,5 +1,5 @@
 package nl.grum.microcraft;
 
-public interface Event<L extends Listener>  {
+public interface Event<L>  {
     void notify(final L listener);
 }
