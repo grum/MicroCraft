@@ -17,4 +17,12 @@ public class Server {
     public boolean peekEvent() {
         return queue.peek() != null;
     }
+
+    public void start() {
+        System.err.println("Starting server");
+    }
+
+    public void stop() {
+        System.err.println("Stopping server");
+    }
 }
