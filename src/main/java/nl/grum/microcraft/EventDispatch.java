@@ -12,14 +12,14 @@ public class EventDispatch {
 
     public <L> void register(Class<? extends Event<L>> eventClass, L listener) {
         List<L> listeners = listenersOf(eventClass);
-        synchronized (listener) {
+        synchronized (listeners) {
             listeners.add(listener);
         }
     }
 
     public <L> void unregister(Class<? extends Event<L>> eventClass, L listener) {
         List<L> listeners = listenersOf(eventClass);
-        synchronized (listener) {
+        synchronized (listeners) {
             listeners.remove(listener);
         }
     }
