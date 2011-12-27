@@ -55,6 +55,14 @@ public class EventDispatchTest {
     }
 
     @Test
+    public void doubleRegistrationRegistersOnce() {
+        subject.register(eventClass, testListener);
+        subject.register(eventClass, testListener);
+
+        assertThat(subject.listenersOf(eventClass), hasSize(1));
+    }
+
+    @Test
     public void registrationAndNotificationWorks() {
         subject.register(TestEvent.class, new TestListener() {
             public void onTest(String string) {
