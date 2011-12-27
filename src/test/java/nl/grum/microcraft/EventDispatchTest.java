@@ -63,6 +63,24 @@ public class EventDispatchTest {
     }
 
     @Test
+    public void unregisterListenerWorks() {
+        subject.register(eventClass, testListener);
+
+        assertThat(subject.listenersOf(eventClass), hasSize(1));
+
+        subject.unregister(eventClass, testListener);
+
+        assertThat(subject.listenersOf(eventClass), hasSize(0));
+    }
+
+    @Test
+    public void unregisterNonexistingListenerWorks() {
+        subject.unregister(eventClass, testListener);
+
+        assertThat(subject.listenersOf(eventClass), hasSize(0));
+    }
+
+    @Test
     public void registrationAndNotificationWorks() {
         subject.register(TestEvent.class, new TestListener() {
             public void onTest(String string) {
