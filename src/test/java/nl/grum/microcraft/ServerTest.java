@@ -9,13 +9,17 @@ import nl.grum.microcraft.support.TestEvent;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 public class ServerTest {
     private Server subject;
 
+    @Mock
+    private EventDispatch dispatcher;
+
     @Before
     public void setup() {
-        subject = new Server();
+        subject = new Server(dispatcher);
     }
 
     @Test

@@ -5,6 +5,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class Server {
 
     private final ConcurrentLinkedQueue<Event<?>> queue = new ConcurrentLinkedQueue<Event<?>>();
+    private final EventDispatch dispatcher;
+
+    public Server(EventDispatch dispatcher) {
+        this.dispatcher = dispatcher;
+    }
 
     public void queueEvent(Event<?> e) {
         queue.add(e);
