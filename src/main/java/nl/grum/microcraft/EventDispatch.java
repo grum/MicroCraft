@@ -2,6 +2,7 @@ package nl.grum.microcraft;
 
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang.Validate;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -11,6 +12,8 @@ public class EventDispatch {
     private final Map<Class, List> map = Maps.newHashMap();
 
     public <L> void register(Class<? extends Event<L>> eventClass, L listener) {
+        Validate.notNull(eventClass, "eventClass must be set");
+        Validate.notNull(listener, "listener must be set");
         List<L> listeners = listenersOf(eventClass);
         synchronized (listeners) {
             listeners.add(listener);
@@ -18,13 +21,15 @@ public class EventDispatch {
     }
 
     public <L> void unregister(Class<? extends Event<L>> eventClass, L listener) {
+        Validate.notNull(eventClass, "eventClass must be set");
+        Validate.notNull(listener, "listener must be set");
         List<L> listeners = listenersOf(eventClass);
         synchronized (listeners) {
             listeners.remove(listener);
         }
     }
 
-    private <L> List<L> listenersOf(Class<? extends Event<L>> eventClass) {
+    protected <L> List<L> listenersOf(Class<? extends Event<L>> eventClass) {
         synchronized (map) {
             @SuppressWarnings("unchecked")
             List<L> list = map.get(eventClass);
